@@ -64,7 +64,6 @@ public class Interval {
 						included = interval.getMinimum() >= this.minimum && interval.getMaximum() < this.maximum;
 						break;
 				}
-				//included = interval.getMinimum() >= this.minimum && interval.getMaximum() < this.maximum;
 				break;
 			case LEFT_OPENED:
 				switch (interval.getOpening()) {
