@@ -1,10 +1,10 @@
 package intervals;
 
 public class LeftOpenedInterval extends Interval {
-	
+
 	public LeftOpenedInterval(double minimum, double maximum) {
 		super(minimum, maximum);
-		this.opening = Opening.LEFT_OPENED; 
+		this.opening = Opening.LEFT_OPENED;
 	}
 
 	@Override
@@ -19,8 +19,13 @@ public class LeftOpenedInterval extends Interval {
 
 	@Override
 	public boolean includes(Interval interval) {
-		// TODO Auto-generated method stub
-		return false;
+		switch (interval.getOpening()) {
+			case BOTH_OPENED:
+			case LEFT_OPENED:
+				return this.minimunLessThanOrEqual(interval) && this.maximunGreaterThanOrEqual(interval);
+			default: // UNOPENED y RIGHT_OPENED
+				return this.minimunStrictlyLessThan(interval) && this.maximunGreaterThanOrEqual(interval);
+		}
 	}
 
 	@Override
@@ -33,6 +38,18 @@ public class LeftOpenedInterval extends Interval {
 	public Interval intersection(Interval interval) {
 		// TODO Auto-generated method stub
 		return interval;
+	}
+
+	@Override
+	public String toString() {
+		return "(" + super.toString() + "]";
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		assert object instanceof LeftOpenedInterval;
+		LeftOpenedInterval interval = (LeftOpenedInterval) object;
+		return this.bothMinimunEquals(interval) && bothMaximunEquals(interval);
 	}
 
 }

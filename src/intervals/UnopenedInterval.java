@@ -19,8 +19,7 @@ public class UnopenedInterval extends Interval {
 
 	@Override
 	public boolean includes(Interval interval) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.minimunLessThanOrEqual(interval) && this.maximunGreaterThanOrEqual(interval);
 	}
 
 	@Override
@@ -35,4 +34,15 @@ public class UnopenedInterval extends Interval {
 		return interval;
 	}
 
+	@Override
+	public String toString() {
+		return "[" + super.toString() + "]";
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		assert object instanceof UnopenedInterval;
+		UnopenedInterval interval = (UnopenedInterval) object;
+		return this.bothMinimunEquals(interval) && bothMaximunEquals(interval);
+	}
 }

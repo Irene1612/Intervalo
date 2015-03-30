@@ -11,7 +11,7 @@ public class RightOpenedInterval extends Interval {
 	public double midPoint() {
 		return super.midPoint();
 	}
-	
+
 	@Override
 	public boolean includes(double value) {
 		return value >= this.minimum && value < this.maximum;
@@ -19,8 +19,13 @@ public class RightOpenedInterval extends Interval {
 
 	@Override
 	public boolean includes(Interval interval) {
-		// TODO Auto-generated method stub
-		return false;
+		switch (interval.getOpening()) {
+			case BOTH_OPENED:
+			case RIGHT_OPENED:
+				return this.minimunLessThanOrEqual(interval) && this.maximunGreaterThanOrEqual(interval);
+			default: // UNOPENED y LEFT_OPENED
+				return this.minimunLessThanOrEqual(interval) && this.maximunStrictlyGreaterThan(interval);
+		}
 	}
 
 	@Override
@@ -34,5 +39,16 @@ public class RightOpenedInterval extends Interval {
 		// TODO Auto-generated method stub
 		return interval;
 	}
+	
+	@Override
+	public String toString() {
+		return "[" + super.toString() + ")";
+	}
 
+	@Override
+	public boolean equals(Object object) {
+		assert object instanceof RightOpenedInterval;
+		RightOpenedInterval interval = (RightOpenedInterval) object;
+		return this.bothMinimunEquals(interval) && bothMaximunEquals(interval);
+	}
 }
