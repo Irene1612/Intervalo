@@ -2,19 +2,13 @@ package intervals;
 
 public class UnopenedInterval extends Interval {
 
-	public UnopenedInterval(double minimum, double maximum) {
-		super(minimum, maximum);
-		this.opening = Opening.UNOPENED;
+	public UnopenedInterval(Endpoint minimumEndpoint, Endpoint maximumEndpoint) {
+		super(minimumEndpoint, maximumEndpoint);
 	}
 
 	@Override
 	public double midPoint() {
 		return super.midPoint();
-	}
-
-	@Override
-	public boolean includes(double value) {
-		return value >= this.minimum && value <= this.maximum;
 	}
 
 	@Override

@@ -4,32 +4,29 @@ public abstract class Interval {
 
 	private static final String SEPARADOR = ", ";
 
-	protected double minimum;
-	protected double maximum;
-	protected Opening opening;
+	protected Endpoint minimumEndpoint;
+	protected Endpoint maximumEndpoint;
 
-	protected Interval(double minimum, double maximum) {
-		this.minimum = minimum;
-		this.maximum = maximum;
+	protected Interval(Endpoint minimumEndpoint, Endpoint maximumEndpoint) {
+		this.minimumEndpoint = minimumEndpoint;
+		this.maximumEndpoint = maximumEndpoint;
 	}
 
-	public double getMinimum() {
-		return minimum;
+	public Endpoint getMinimumEndpoint() {
+		return minimumEndpoint;
 	}
 
-	public double getMaximum() {
-		return maximum;
-	}
-
-	public Opening getOpening() {
-		return opening;
+	public Endpoint getMaximumEndpoint() {
+		return maximumEndpoint;
 	}
 
 	public double midPoint() {
-		return (this.minimum + this.maximum) / 2;
+		return minimumEndpoint.midPoint(maximumEndpoint);
 	}
 
-	public abstract boolean includes(double value);
+	public boolean includes(double value){
+		return minimumEndpoint.includesValue(value, maximumEndpoint);
+	}
 
 	public abstract boolean includes(Interval interval);
 
