@@ -7,22 +7,6 @@ public class LeftOpenedInterval extends Interval {
 	}
 
 	@Override
-	public double midPoint() {
-		return super.midPoint();
-	}
-
-	@Override
-	public boolean includes(Interval interval) {
-		switch (interval.getOpening()) {
-			case BOTH_OPENED:
-			case LEFT_OPENED:
-				return this.minimunLessThanOrEqual(interval) && this.maximunGreaterThanOrEqual(interval);
-			default: // UNOPENED y RIGHT_OPENED
-				return this.minimunStrictlyLessThan(interval) && this.maximunGreaterThanOrEqual(interval);
-		}
-	}
-
-	@Override
 	public boolean intersectsWith(Interval interval) {
 		// TODO Auto-generated method stub
 		return false;

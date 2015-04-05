@@ -7,25 +7,6 @@ public class BothOpenedInterval extends Interval {
 	}
 
 	@Override
-	public double midPoint() {
-		return super.midPoint();
-	}
-
-	@Override
-	public boolean includes(Interval interval) {
-		switch (interval.getOpening()) {
-			case BOTH_OPENED:
-				return this.minimunLessThanOrEqual(interval) && this.maximunGreaterThanOrEqual(interval);
-			case RIGHT_OPENED:
-				return this.minimunStrictlyLessThan(interval) && this.maximunGreaterThanOrEqual(interval);
-			case LEFT_OPENED:
-				return this.minimunLessThanOrEqual(interval) && this.maximunStrictlyGreaterThan(interval);
-			default: // UNOPENED
-				return this.minimunStrictlyLessThan(interval) && this.maximunStrictlyGreaterThan(interval);
-		}
-	}
-
-	@Override
 	public boolean intersectsWith(Interval interval) {
 		// TODO Auto-generated method stub
 		return false;

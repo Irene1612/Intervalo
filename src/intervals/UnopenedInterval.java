@@ -6,15 +6,6 @@ public class UnopenedInterval extends Interval {
 		super(minimumEndpoint, maximumEndpoint);
 	}
 
-	@Override
-	public double midPoint() {
-		return super.midPoint();
-	}
-
-	@Override
-	public boolean includes(Interval interval) {
-		return this.minimunLessThanOrEqual(interval) && this.maximunGreaterThanOrEqual(interval);
-	}
 
 	@Override
 	public boolean intersectsWith(Interval interval) {

@@ -28,22 +28,8 @@ public abstract class Interval {
 		return minimumEndpoint.includesValue(value, maximumEndpoint);
 	}
 
-	public abstract boolean includes(Interval interval);
-
-	protected boolean minimunLessThanOrEqual(Interval interval) {
-		return interval.getMinimum() >= this.minimum;
-	}
-
-	protected boolean minimunStrictlyLessThan(Interval interval) {
-		return interval.getMinimum() > this.minimum;
-	}
-
-	protected boolean maximunGreaterThanOrEqual(Interval interval) {
-		return interval.getMaximum() <= this.maximum;
-	}
-
-	protected boolean maximunStrictlyGreaterThan(Interval interval) {
-		return interval.getMaximum() < this.maximum;
+	public boolean includes(Interval interval){
+		return this.minimumEndpoint.lessThanOtherEndpoint(interval.getMinimumEndpoint()) && this.maximumEndpoint.greaterThanOtherEndPoint(interval.getMaximumEndpoint());
 	}
 
 	public abstract boolean intersectsWith(Interval interval);
@@ -52,14 +38,14 @@ public abstract class Interval {
 
 	@Override
 	public String toString() {
-		return this.minimum + Interval.SEPARADOR + this.maximum;
+		return this.minimumEndpoint.getValue() + Interval.SEPARADOR + this.maximumEndpoint.getValue();
 	}
 	
 	protected boolean bothMinimunEquals(Interval interval){
-		return this.minimum == interval.getMinimum();
+		return this.minimumEndpoint.getValue() == interval.getMinimumEndpoint().getValue();
 	}
 	
 	protected boolean bothMaximunEquals(Interval interval){
-		return this.maximum == interval.getMaximum();
+		return this.maximumEndpoint.getValue() == interval.getMaximumEndpoint().getValue();
 	}
 }

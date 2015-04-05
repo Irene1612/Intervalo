@@ -6,21 +6,6 @@ public class RightOpenedInterval extends Interval {
 		super(minimumEndpoint, maximumEndpoint);
 	}
 
-	@Override
-	public double midPoint() {
-		return super.midPoint();
-	}
-
-	@Override
-	public boolean includes(Interval interval) {
-		switch (interval.getOpening()) {
-			case BOTH_OPENED:
-			case RIGHT_OPENED:
-				return this.minimunLessThanOrEqual(interval) && this.maximunGreaterThanOrEqual(interval);
-			default: // UNOPENED y LEFT_OPENED
-				return this.minimunLessThanOrEqual(interval) && this.maximunStrictlyGreaterThan(interval);
-		}
-	}
 
 	@Override
 	public boolean intersectsWith(Interval interval) {
